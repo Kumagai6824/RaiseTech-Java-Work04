@@ -16,14 +16,17 @@ public class FortuneCooker {
         this.signOff = signOff;
     }
 
+    //テキストブロックを利用してみる
     public void dispResult() {
-        System.out.println
-                ("今日のあなた（PC）の運勢は・・・\n\n      " +
-                        "[" + FortuneLevel + "]" + "\n" +
-                        "------------------------------\n" +
-                        explanation + "\n" +
-                        "------------------------------\n" +
-                        signOff);
+        String str = """
+                今日のあなた（PC）の運勢は・・・
+                                
+                         [%1$s]
+                --------------------------
+                %2$s
+                --------------------------
+                %3$s
+                """.formatted(FortuneLevel, explanation, signOff);  //ForutneLevelはenumの日本語の部分を表示したい。
+        System.out.println(str);
     }
-
 }
