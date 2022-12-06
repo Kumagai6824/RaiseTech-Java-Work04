@@ -15,27 +15,23 @@ public class Main {
         fortuneList.add(new FortuneCooker(FortuneLevel.BAD, "Your PC/Device needs to be repaired\nError code:0xc000014c"));
 
         Random randomIndexNumber = new Random();
-        List<FortuneCooker> result = randomIndexNumber.
+        FortuneCooker result = randomIndexNumber.
                 ints(1, 0, fortuneList.size()).
-                mapToObj(i -> fortuneList.get(i)).toList();
+                mapToObj(i -> fortuneList.get(i)).findFirst().orElseThrow();
 
         //おみくじ結果から、Enumの日本語部分を取り出すことはできる。。。
         /*System.out.println("Enum test");
         FortuneLevel fortuneLevelTest = (FortuneLevel) result.get(0).getFortuneLevel();*/
 
-        //おみくじ結果を変数に格納
-        FortuneCooker yourFortune = result.get(0);
-
-
         System.out.println("<<<WELCOME TO THE FORTUNE COOKER>>>\n");
-        if (yourFortune.getFortuneLevel().equals(FortuneLevel.EXCELLENT)) {
-            yourFortune.setSignOff("ﾏﾀﾈ―ヾ(●´･∀･`●)―!!");
-            yourFortune.dispResult();
-        } else if (yourFortune.getFortuneLevel().equals(FortuneLevel.BAD)) {
-            yourFortune.setSignOff("(´;д;`)ｳｯ…");
-            yourFortune.dispResult();
+        if (result.getFortuneLevel().equals(FortuneLevel.EXCELLENT)) {
+            result.setSignOff("ﾏﾀﾈ―ヾ(●´･∀･`●)―!!");
+            result.dispResult();
+        } else if (result.getFortuneLevel().equals(FortuneLevel.BAD)) {
+            result.setSignOff("(´;д;`)ｳｯ…");
+            result.dispResult();
         } else {
-            yourFortune.dispResult();
+            result.dispResult();
         }
 
     }
